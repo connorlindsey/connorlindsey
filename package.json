@@ -13,7 +13,25 @@
     "next-mdx-remote": "^1.0.0",
     "next-remote-watch": "0.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.11.1"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      [
+        "styled-components",
+        {
+          "ssr": true,
+          "displayName": true
+        }
+      ]
+    ]
+  }
 }

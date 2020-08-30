@@ -1,49 +1,68 @@
+import Head from "next/head"
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
+import theme from "../styles/theme"
+
+import Header from "./Header"
+
 export default function Layout({ children }) {
   return (
-    <>
-      <div className="wrapper">{children}</div>
-      <style jsx>{`
-        .wrapper {
-          max-width: 36rem;
-          margin: 0 auto;
-          padding: 1.5rem;
-        }
-      `}</style>
-      <style jsx global>{`
-        * {
-          margin: 0;
-          padding: 0;
-        }
-
-        :root {
-          --site-color: royalblue;
-          --divider-color: rgba(0, 0, 0, 0.4);
-        }
-
-        html {
-          font: 100%/1.5 system-ui;
-        }
-
-        a {
-          color: inherit;
-          text-decoration-color: var(--divider-color);
-          text-decoration-thickness: 2px;
-        }
-
-        a:hover {
-          color: var(--site-color);
-          text-decoration-color: currentcolor;
-        }
-
-        h1,
-        p {
-          margin-bottom: 1.5rem;
-        }
-
-        code {
-          font-family: 'Menlo';
-        }
-      `}</style>
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Head>
+        <title>Connor Lindsey</title>
+        <meta name='description' content='' />
+        <meta property='og:type' content='website' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta charSet='utf-8' />
+        <link rel='shortcut icon' type='image/png' href='/favicon.png' />
+        <meta name='theme-color' content='#ffffff' />
+      </Head>
+      <PageWrapper>
+        <Header />
+        <Inner>{children}</Inner>
+      </PageWrapper>
+    </ThemeProvider>
   )
 }
+
+const PageWrapper = styled.div`
+  background-color: #fff;
+`
+
+const Inner = styled.main`
+  max-width: ${(props) => props.theme.maxWidth};
+  margin: 0 auto;
+  padding: 2rem;
+`
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+    font-size: 10px;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    font-family: "Nunito Sans", sans-serif;
+  }
+  a {
+    text-decoration: none;
+    color: ${theme.primary["500"]};
+  }
+  button {
+    font-family: "Nunito Sans", sans-serif; 
+  }
+
+
+	& *::selection {
+		background: ${(props) => props.theme.primary["300"]}; /* WebKit/Blink Browsers */
+	}
+	& *::-moz-selection {
+		background: ${(props) => props.theme.primary["300"]}; /* Gecko Browsers */
+	}
+`
