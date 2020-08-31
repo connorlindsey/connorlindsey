@@ -1,3 +1,5 @@
+import styled from "styled-components"
+
 // MDX Posts
 import fs from "fs"
 import matter from "gray-matter"
@@ -14,9 +16,13 @@ export default function Index({ posts }) {
   return (
     <>
       <Intro />
-      <Experiences />
-      <Projects />
-      <Posts posts={posts} />
+      <Inner>
+        <Experiences />
+        <Projects />
+        <Posts posts={posts} />
+        {/* ActionCard */}
+        <div style={{ marginBottom: "70px" }}>Hey</div>
+      </Inner>
     </>
   )
 }
@@ -43,3 +49,9 @@ export function getStaticProps() {
 
   return { props: { posts } }
 }
+
+const Inner = styled.div`
+  max-width: ${(props) => props.theme.maxWidth};
+  margin: 0 auto;
+  padding: 0 3rem;
+`

@@ -9,6 +9,7 @@ import path from "path"
 import CustomLink from "../../components/CustomLink"
 import Layout from "../../components/Layout"
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils"
+import styled from "styled-components"
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -30,10 +31,12 @@ export default function PostPage({ source, frontMatter }) {
         <title>{frontMatter.title} | Connor Lindsey</title>
         <meta name='description' content={frontMatter.description} />
       </Head>
-      <div className='post-header'>
-        <h1>{frontMatter.title}</h1>
-      </div>
-      <main>{content}</main>
+      <Content>
+        <div className='post-header'>
+          <h1>{frontMatter.title}</h1>
+        </div>
+        <main>{content}</main>
+      </Content>
     </>
   )
 }
@@ -74,3 +77,18 @@ export const getStaticPaths = async () => {
     fallback: false,
   }
 }
+
+const Content = styled.div`
+  max-width: ${(props) => props.theme.maxWidth};
+  margin: 0 auto;
+  padding: 0 3rem;
+
+  main {
+    img {
+      max-width: 600px;
+      height: auto;
+      margin: 0 auto;
+      border-radius: ${(props) => props.theme.borderRadius};
+    }
+  }
+`

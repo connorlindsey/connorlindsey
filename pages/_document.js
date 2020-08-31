@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document"
+import Document, { Html, Head, Main, NextScript } from "next/document"
 import { ServerStyleSheet } from "styled-components"
 
 export default class MyDocument extends Document {
@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <Html lang='en'>
         <Head>
           <link
             href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;800&display=swap'
@@ -23,7 +23,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }

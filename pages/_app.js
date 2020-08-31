@@ -4,9 +4,9 @@ import Layout from "../components/Layout"
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
-
+    const isHome = Component.name === "Index"
     return (
-      <Layout>
+      <Layout isHome={isHome}>
         <Component {...pageProps} />
       </Layout>
     )
